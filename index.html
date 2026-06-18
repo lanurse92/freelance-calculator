@@ -729,23 +729,23 @@ document.getElementById("unlock-btn").addEventListener("click", () => {
   emailEl.classList.remove("error");
 
   // ---- BEEHIIV SUBSCRIPTION ----
-  // Replace YOUR_PUBLICATION_ID below with your actual Beehiiv publication ID
-  // You can find it in Beehiiv Settings > Publication Details
-  const BEEHIIV_PUB_ID = "pub_9d3cb83d-824e-475b-b663-42447dce425d";
-  fetch("https://api.beehiiv.com/v2/publications/" + BEEHIIV_PUB_ID + "/subscriptions", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
+const BEEHIIV_PUB_ID = "pub_9d3cb83d-824e-475b-b663-42447dce425d";
+fetch("https://api.beehiiv.com/v2/publications/" + BEEHIIV_PUB_ID + "/subscriptions", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
     "Authorization": "Bearer bh_live_AhXaCnD474gaKdDJPsoNn3RpB9ExdX4xeTcAEq8WozhujLLjPeshj5lecs6ZPIGE"
-    body: JSON.stringify({
-      email: email,
-      utm_source: "rate-calculator",
-      utm_medium: "tool",
-      utm_campaign: "freelance-calculator",
-      reactivate_existing: true,
-      send_welcome_email: true
-    })
-  }).catch(() => {});
-  // ---- END BEEHIIV ----
+  },
+  body: JSON.stringify({
+    email: email,
+    utm_source: "rate-calculator",
+    utm_medium: "tool",
+    utm_campaign: "freelance-calculator",
+    reactivate_existing: true,
+    send_welcome_email: true
+  })
+}).catch(() => {});
+// ---- END BEEHIIV ----
 
   document.getElementById("gate-section").style.display = "none";
   showResults();
