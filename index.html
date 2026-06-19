@@ -744,7 +744,7 @@ fetch("https://api.beehiiv.com/v2/publications/" + BEEHIIV_PUB_ID + "/subscripti
     reactivate_existing: true,
     send_welcome_email: true
   })
-}).catch(() => {});
+}).then(r => r.json()).then(d => console.log("Beehiiv response:", d)).catch(e => console.error("Beehiiv error:", e));
 // ---- END BEEHIIV ----
 
   document.getElementById("gate-section").style.display = "none";
