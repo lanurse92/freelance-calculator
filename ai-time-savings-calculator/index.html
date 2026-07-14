@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AI Productivity Calculator | The AI Edge</title>
+
+<meta name="description" content="Calculate how much time and money AI tools can save freelancers.">
+
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+    background:#f7f7f7;
+}
+
+.container {
+    background:white;
+    padding:30px;
+    border-radius:12px;
+}
+
+h1 {
+    text-align:center;
+}
+
+input, select {
+    width:100%;
+    padding:12px;
+    margin:8px 0 20px;
+    font-size:16px;
+}
+
+button {
+    width:100%;
+    padding:14px;
+    background:#111;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+button:hover {
+    opacity:.85;
+}
+
+.result {
+    margin-top:25px;
+    padding:20px;
+    background:#eef6ff;
+    border-radius:10px;
+    display:none;
+}
+
+.signup {
+    margin-top:25px;
+    padding:20px;
+    background:#fff5e6;
+    border-radius:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>AI Productivity Calculator</h1>
+
+<p>
+Find out how much time and income AI tools could save you in your freelance business.
+</p>
+
+
+<label>Your hourly rate ($)</label>
+<input id="rate" type="number" placeholder="Example: 75">
+
+
+<label>Hours spent weekly on repetitive tasks</label>
+<input id="hours" type="number" placeholder="Example: 10">
+
+
+<label>Estimated AI time savings</label>
+
+<select id="saving">
+<option value="0.25">25%</option>
+<option value="0.50">50%</option>
+<option value="0.75">75%</option>
+</select>
+
+
+<label>Weeks worked per year</label>
+
+<input id="weeks" type="number" value="52">
+
+
+<button onclick="calculate()">
+Calculate My AI Savings
+</button>
+
+
+<div class="result" id="result"></div>
+
+
+<div class="signup">
+
+<h2>Get More AI Tools for Freelancers</h2>
+
+<p>
+Join The AI Edge newsletter for weekly AI tools, productivity tips, and income strategies.
+</p>
+
+<!-- Replace this with your Beehiiv embed -->
+
+<form>
+<input type="email" placeholder="Enter your email">
+<button type="submit">
+Get Free Tools
+</button>
+</form>
+
+</div>
+
+
+</div>
+
+
+<script>
+
+function calculate(){
+
+let rate = Number(document.getElementById("rate").value);
+let hours = Number(document.getElementById("hours").value);
+let saving = Number(document.getElementById("saving").value);
+let weeks = Number(document.getElementById("weeks").value);
+
+
+let savedHoursWeekly = hours * saving;
+
+let savedHoursYearly = savedHoursWeekly * weeks;
+
+let value = savedHoursYearly * rate;
+
+
+document.getElementById("result").style.display="block";
+
+
+document.getElementById("result").innerHTML = `
+
+<h2>Your AI Savings</h2>
+
+<p>
+AI could save you approximately:
+</p>
+
+<h2>${savedHoursYearly.toFixed(0)} hours per year</h2>
+
+
+<p>
+Potential value of that recovered time:
+</p>
+
+<h2>$${value.toLocaleString()}</h2>
+
+
+<p>
+That's the equivalent of earning more without adding extra working hours.
+</p>
+
+`;
+
+}
+
+</script>
+
+
+</body>
+</html>
+
+Add AI time savings calculator
