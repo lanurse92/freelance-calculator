@@ -380,7 +380,7 @@ transform:translateY(-3px);
 
 .dashboard-card{
     display:grid;
-    grid-template-columns:48px 1fr auto;
+    grid-template-columns:48px minmax(0,1fr) auto;
     align-items:center;
     gap:18px;
     padding:20px;
@@ -391,6 +391,9 @@ transform:translateY(-3px);
         transform .3s ease,
         box-shadow .3s ease,
         border-color .3s ease;
+}
+.dashboard-card > *{
+    min-width:0;
 }
 
 .dashboard-icon{
@@ -433,6 +436,8 @@ transform:translateY(-3px);
     font-weight:700;
     color:#2563EB;
     letter-spacing:-0.5px;
+    white-space:normal;
+    overflow-wrap:anywhere;
 }
 
 /* ---------- Mobile ---------- */
@@ -641,18 +646,7 @@ html, body {
     overflow-x:hidden;
 }
 
-.tools {
-    position:relative !important;
-    left:0 !important;
-    right:auto !important;
-    width:100vw !important;
-    max-width:none !important;
-}
 
-.tools-grid {
-    width:900px !important;
-    margin:0 auto !important;
-}
 /* Fix Tools Section Overflow */
 
 .tools {
@@ -1094,13 +1088,36 @@ body {
         font-size:1.2rem;
     }
 
-}
-.dashboard-card{
-    min-width:0;
-}
+    .dashboard-card{
+        min-width:0;
+    }
 
-.dashboard-card p,
-.dashboard-card h4,
-.dashboard-value{
-    overflow-wrap:break-word;
+    .dashboard-card h4,
+    .dashboard-card p,
+    .dashboard-value{
+        overflow-wrap:break-word;
+    }
+
+}
+@media (max-width:600px){
+
+    .tools-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+@media (max-width:600px){
+
+    .tool-card{
+        width:100%;
+        min-width:0;
+        box-sizing:border-box;
+        overflow:hidden;
+    }
+
+    .tool-card *{
+        max-width:100%;
+        box-sizing:border-box;
+    }
+
 }
