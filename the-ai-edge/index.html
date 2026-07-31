@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="google-site-verification" content="cqKonXyJwLgHnPId4Bu5Lu5xYw9bCdpYgX5b3-qilt8" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Productivity Calculator | Calculate Your AI Time Savings</title>
+<meta name="description" content="Use our free AI Productivity Calculator to estimate how much time and money AI tools can save freelancers, creators, and small businesses.">"
+
+<meta property="og:title" content="AI Productivity Calculator | See How Much AI Can Save You">
+
+<meta property="og:description" content="Calculate how much time and money AI tools can save you every month.">
+
+<meta property="og:type" content="website">
+
+<meta property="og:url" content="https://ai-productivity-calculator.netlify.app">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AI Productivity Calculator by The AI Edge">
+<meta property="twitter:card" content="summary_large_image">
+
+<meta property="og:image" content="https://ai-productivity-calculator.netlify.app/images/ai-productivity-share.png">
+<link rel="icon" type="image/png" href="favicon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/home.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD9NBG77E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TGD9NBG77E');
+</script>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+
+    <a href="#" class="logo">
+        <i data-lucide="sparkles" class="logo-icon"></i>
+      The AI Edge
+    </a>
+
+    <div class="nav-links">
+      <a href="#tools">Tools</a>
+      <a href="#newsletter">Newsletter</a>
+      <a href="#" class="nav-button">Free Toolkit</a>
+    </div>
+
+</head>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+
+  <div class="container hero-grid">
+
+    <div class="hero-text">
+
+      <span class="eyebrow">
+        FREE AI TOOLKIT FOR FREELANCERS
+      </span>
+
+      <h1>
+Grow Your Freelance Business<br>
+<span>with AI</span>
+</h1>
+
+      <p>
+
+      Free AI tools that help freelancers charge confidently, save time, and grow a more profitable business.
+
+      </p>
+
+      <div class="hero-buttons">
+
+        <a href="freelance-rate-calculator.html" class="primary-btn">
+          Calculate My Rate
+        </a>
+
+        <a href="ai-time-savings-calculator.html" class="secondary-btn">
+          See AI Savings
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="hero-image">
+
+    <div class="mockup">
+
+        <div class="dashboard-header">
+
+            <div class="dashboard-logo">
+                <i data-lucide="sparkles"></i>
+                <span>The AI Edge</span>
+            </div>
+
+            <span class="status">● Live</span>
+
+        </div>
+<div class="dashboard-chart">
+
+    <div class="chart-header">
+        Revenue Potential
+        <span>+18%</span>
+    </div>
+
+    <div class="chart-bars">
+
+        <div class="chart-bar h40"></div>
+        <div class="chart-bar h60"></div>
+        <div class="chart-bar h55"></div>
+        <div class="chart-bar h80"></div>
+        <div class="chart-bar h70"></div>
+        <div class="chart-bar h95"></div>
+        <div class="chart-bar h85"></div>
+
+    </div>
+
+</div>
+<div class="dashboard-card">
+
+    <div class="dashboard-icon">
+        <i data-lucide="wallet"></i>
+    </div>
+
+    <div>
+        <h4>Freelance Rate</h4>
+        <p>Recommended hourly rate</p>
+    </div>
+
+    <div class="dashboard-value" id="rateValue">
+        $0/hr
+    </div>
+
+</div>
+
+<div class="dashboard-card">
+
+    <div class="dashboard-icon">
+        <i data-lucide="clock"></i>
+    </div>
+
+    <div>
+        <h4>AI Time Saved</h4>
+        <p>Estimated weekly savings</p>
+        
+    </div>
+
+    <div class="dashboard-value" id="timeValue">
+        0 hrs
+    </div>
+
+</div>
+
+<div class="dashboard-card">
+
+    <div class="dashboard-icon">
+        <i data-lucide="trending-up"></i>
+    </div>
+
+    <div>
+        <h4>Annual Value</h4>
+        <p>Potential productivity gain</p>
+    </div>
+
+    <div class="dashboard-value" id="annualValue">
+        $0
+    </div>
+
+</div>
+<div class="activity">
+
+    <h4>Recent Activity</h4>
+
+    <p>✔ Freelance rate calculated</p>
+
+    <p>✔ AI savings estimated</p>
+
+</div>
+</div> <!-- closes mockup -->
+</div> <!-- closes hero-image -->
+
+</div> <!-- closes hero-grid -->
+
+</div> <!-- closes container -->
+
+</section> <!-- closes hero -->
+<section class="stats-bar">
+
+    <div class="container stats-grid">
+
+        <div class="stat-item">
+            <i data-lucide="badge-check"></i>
+            <span>100% Free AI Tools</span>
+        </div>
+
+        <div class="stat-item">
+            <i data-lucide="clock-3"></i>
+            <span>2-Minute Calculators</span>
+        </div>
+
+        <div class="stat-item">
+            <i data-lucide="briefcase"></i>
+            <span>Built for Freelancers</span>
+        </div>
+
+        <div class="stat-item">
+            <i data-lucide="sparkles"></i>
+            <span>AI-Powered Insights</span>
+        </div>
+
+    </div>
+
+</section>
+<section class="tools">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <h2>Free AI Tools</h2>
+
+            <p>
+                Everything you need to price smarter, save time,
+                and grow your freelance business.
+            </p>
+
+        </div>
+
+        <div class="tools-grid">
+
+    <div class="tool-card">
+        <div class="tool-card">
+
+    <div class="tool-icon">
+        <i data-lucide="wallet"></i>
+    </div>
+
+    <h3>Freelance Rate Calculator</h3>
+
+    <p>
+        Find the hourly and daily rate you should charge based on
+        your goals, expenses, and experience.
+    </p>
+
+    <div class="tool-meta">
+
+        <span>⏱ 2 min</span>
+
+        <span class="free-badge">Free</span>
+
+    </div>
+
+    <a href="freelance-rate-calculator.html" class="tool-button">
+        Launch Calculator →
+    </a>
+
+</div>
+    </div>
+
+    <div class="tool-card">
+        <div class="tool-card">
+
+    <div class="tool-icon">
+        <i data-lucide="clock"></i>
+    </div>
+
+    <h3>AI Time Savings Calculator</h3>
+
+    <p>
+        See how much time and money AI tools can save you
+        every week as a freelancer.
+    </p>
+
+    <div class="tool-meta">
+
+        <span>⏱ 2 min</span>
+
+        <span class="free-badge">Free</span>
+
+    </div>
+
+    <a href="./ai-time-savings-calculator.html">
+    Try Calculator
+</a>
+
+</div>
+    </div>
+
+</div> <!-- closes tools-grid -->
+
+</div> <!-- closes container -->
+
+</section> <!-- closes tools -->
+<section class="why-section">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-tag">
+                WHY THE AI EDGE
+            </span>
+
+            <h2>
+                AI Tools Built for Real Freelancers
+            </h2>
+
+            <p>
+                Skip the complexity. Use practical AI tools designed
+                to help you work faster, price smarter, and grow your income.
+            </p>
+
+        </div>
+
+
+        <div class="why-grid">
+
+
+            <div class="why-card">
+
+                <div class="why-icon">
+                    <i data-lucide="trending-up"></i>
+                </div>
+
+                <h3>
+                    Charge With Confidence
+                </h3>
+
+                <p>
+                    Stop guessing your rates. Use data-driven tools
+                    to understand what your freelance work is worth.
+                </p>
+
+            </div>
+
+
+            <div class="why-card">
+
+                <div class="why-icon">
+                    <i data-lucide="clock"></i>
+                </div>
+
+                <h3>
+                    Save Hours Every Week
+                </h3>
+
+                <p>
+                    Discover where AI can automate repetitive tasks
+                    and give you more time for higher-value work.
+                </p>
+
+            </div>
+
+
+            <div class="why-card">
+
+                <div class="why-icon">
+                    <i data-lucide="sparkles"></i>
+                </div>
+
+                <h3>
+                    Simple AI Solutions
+                </h3>
+
+                <p>
+                    No complicated setups. Just practical tools
+                    freelancers can start using immediately.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+<section class="newsletter-section" id="newsletter">
+
+    <div class="newsletter-card">
+
+        <div class="newsletter-icon">
+            <i data-lucide="mail"></i>
+        </div>
+
+        <h2>
+            Get Smarter With AI Every Week
+        </h2>
+
+        <p>
+            Join The AI Edge newsletter for practical AI tools,
+            productivity tips, and strategies to help freelancers
+            save time and grow their business.
+        </p>
+
+
+        <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js"
+data-beehiiv-form="bd93e433-dab6-4eb0-808a-efa3aaccf06a"></script>
+
+
+        <span class="newsletter-note">
+            No spam. Just useful AI insights.
+        </span>
+
+    </div>
+
+</section>
+<footer class="footer">
+
+    <div class="container footer-grid">
+
+        <div class="footer-brand">
+
+            <div class="footer-logo">
+                <i data-lucide="sparkles"></i>
+                <span>The AI Edge</span>
+            </div>
+
+            <p>
+                Practical AI tools and resources that help freelancers
+                save time, work smarter, and grow their business.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h4>Tools</h4>
+
+            <a href="freelance-rate-calculator.html">
+                Freelance Rate Calculator
+            </a>
+
+            <a href="ai-time-savings-calculator.html">
+                AI Time Savings Calculator
+            </a>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h4>Resources</h4>
+
+            <a href="#newsletter">
+                Newsletter
+            </a>
+
+            <a href="#">
+                Free Toolkit
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        © 2026 The AI Edge. All rights reserved.
+
+    </div>
+
+</footer>
+<script src="js/script.js"></script>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<script>
+  lucide.createIcons();
+</script>
+<script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
+</body>
+</html>
