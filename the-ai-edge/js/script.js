@@ -67,6 +67,20 @@ animateValue(
     "$",
     "/yr"
 );
+/// Update dashboard cards
+document.getElementById("rateValue").textContent =
+    "$" + rate.toFixed(0) + "/hr";
+
+document.getElementById("timeValue").textContent =
+    Math.round(weeklyHoursSaved) + " hrs";
+
+document.getElementById("annualValue").textContent =
+    "$" + Math.round(yearlyValue).toLocaleString();
+
+// Save calculator results for the homepage
+localStorage.setItem("aiRate", rate.toFixed(0));
+localStorage.setItem("aiTimeSaved", Math.round(weeklyHoursSaved));
+localStorage.setItem("aiAnnualValue", Math.round(yearlyValue));
 
 document.getElementById("result").style.display = "block";
 
