@@ -1095,3 +1095,12 @@ body {
     }
 
 }
+.dashboard-card{
+    min-width:0;
+}
+
+.dashboard-card p,
+.dashboard-card h4,
+.dashboard-value{
+    overflow-wrap:break-word;
+}
