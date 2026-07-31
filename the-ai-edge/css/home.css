@@ -1081,3 +1081,17 @@ html, body {
 body {
     overflow-x:hidden;
 }
+@media (max-width: 600px){
+
+    .dashboard-card{
+        grid-template-columns:48px 1fr;
+        gap:14px;
+        padding:16px;
+    }
+
+    .dashboard-value{
+        grid-column:2;
+        font-size:1.2rem;
+    }
+
+}
