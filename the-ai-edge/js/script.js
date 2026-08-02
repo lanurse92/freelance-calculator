@@ -116,13 +116,28 @@ function calculate() {
     );
 
 
-    // Show calculator results
-    const result =
-        document.getElementById("result");
+    // Save calculator values for the homepage
+localStorage.setItem("aiRate", rate.toFixed(0));
 
-    if (result) {
-        result.style.display = "block";
-    }
+localStorage.setItem(
+    "aiTimeSaved",
+    Math.round(weeklyHoursSaved)
+);
+
+localStorage.setItem(
+    "aiAnnualValue",
+    Math.round(yearlyValue)
+);
+
+
+// Show calculator results
+const result =
+    document.getElementById("result");
+
+if (result) {
+    result.style.display = "block";
+}
+
 
     // Track calculator use
     trackCalculator();

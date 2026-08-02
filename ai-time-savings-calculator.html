@@ -244,6 +244,19 @@ let savedHoursYearly = savedHoursWeekly * weeks;
 
 let value = savedHoursYearly * rate;
 
+// Save calculator values for the homepage
+localStorage.setItem("aiRate", rate.toFixed(0));
+
+localStorage.setItem(
+    "aiTimeSaved",
+    Math.round(savedHoursWeekly)
+);
+
+localStorage.setItem(
+    "aiAnnualValue",
+    Math.round(value)
+);
+
 
 document.getElementById("result").style.display="block";
 
@@ -292,6 +305,41 @@ function trackCalculator(){
     });
 
 }
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const savedRate = localStorage.getItem("aiRate");
+    const savedTime = localStorage.getItem("aiTimeSaved");
+    const savedAnnual = localStorage.getItem("aiAnnualValue");
+
+    if (savedRate !== null) {
+        const rateCard = document.getElementById("rateValue");
+
+        if (rateCard) {
+            rateCard.textContent = "$" + savedRate + "/hr";
+        }
+    }
+
+    if (savedTime !== null) {
+        const timeCard = document.getElementById("timeValue");
+
+        if (timeCard) {
+            timeCard.textContent = savedTime + " hrs";
+        }
+    }
+
+    if (savedAnnual !== null) {
+        const annualCard = document.getElementById("annualValue");
+
+        if (annualCard) {
+            annualCard.textContent =
+                "$" + Number(savedAnnual).toLocaleString();
+        }
+    }
+
+});
 
 </script>
 

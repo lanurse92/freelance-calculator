@@ -487,5 +487,32 @@ data-beehiiv-form="bd93e433-dab6-4eb0-808a-efa3aaccf06a"></script>
   lucide.createIcons();
 </script>
 <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
+
+<script>
+window.addEventListener("DOMContentLoaded", function () {
+
+    const savedRate = localStorage.getItem("aiRate");
+    const savedTime = localStorage.getItem("aiTimeSaved");
+    const savedAnnual = localStorage.getItem("aiAnnualValue");
+
+    const rateCard = document.getElementById("rateValue");
+    const timeCard = document.getElementById("timeValue");
+    const annualCard = document.getElementById("annualValue");
+
+    if (savedRate && rateCard) {
+        rateCard.textContent = "$" + savedRate + "/hr";
+    }
+
+    if (savedTime && timeCard) {
+        timeCard.textContent = savedTime + " hrs";
+    }
+
+    if (savedAnnual && annualCard) {
+        annualCard.textContent =
+            "$" + Number(savedAnnual).toLocaleString();
+    }
+
+});
+</script>
 </body>
 </html>
