@@ -1121,3 +1121,23 @@ body {
     }
 
 }
+.reset-button {
+    margin-top: 25px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    background: #0F172A;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.reset-button:hover {
+    opacity: 0.85;
+}
+.last-calculated {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #64748B;
+}

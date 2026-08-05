@@ -32,21 +32,36 @@ function animateValue(id, start, end, duration, prefix = "", suffix = "") {
 
 
 function calculate() {
-    const rate = Number(
-        document.getElementById("rate").value
-    );
 
-    const hours = Number(
-        document.getElementById("hours").value
-    );
+    const rateInput =
+        document.getElementById("rate");
 
-    const saving = Number(
-        document.getElementById("saving").value
-    );
+    const hoursInput =
+        document.getElementById("hours");
 
-    const weeks = Number(
-        document.getElementById("weeks").value
-    );
+    const savingInput =
+        document.getElementById("saving");
+
+    const weeksInput =
+        document.getElementById("weeks");
+
+
+    // Do nothing if this is not the calculator page
+    if (
+        !rateInput ||
+        !hoursInput ||
+        !savingInput ||
+        !weeksInput
+    ) {
+        return;
+    }
+
+
+    const rate = Number(rateInput.value);
+    const hours = Number(hoursInput.value);
+    const saving = Number(savingInput.value);
+    const weeks = Number(weeksInput.value);
+
 
     if (!rate || !hours) {
         alert(
@@ -55,8 +70,11 @@ function calculate() {
         return;
     }
 
+
     // Weekly time saved
-    const weeklyHoursSaved = hours * saving;
+    const weeklyHoursSaved =
+        hours * saving;
+
 
     // Monthly calculations
     const monthlyHoursSaved =
@@ -64,6 +82,7 @@ function calculate() {
 
     const monthlyValue =
         monthlyHoursSaved * rate;
+
 
     // Yearly calculation
     const yearlyValue =
@@ -115,28 +134,19 @@ function calculate() {
         Math.round(yearlyValue)
     );
 
-
-    // Save calculator values for the homepage
-localStorage.setItem("aiRate", rate.toFixed(0));
-
-localStorage.setItem(
-    "aiTimeSaved",
-    Math.round(weeklyHoursSaved)
-);
-
-localStorage.setItem(
-    "aiAnnualValue",
-    Math.round(yearlyValue)
-);
+    localStorage.setItem(
+        "lastCalculated",
+        new Date().toLocaleDateString()
+    );
 
 
-// Show calculator results
-const result =
-    document.getElementById("result");
+    // Show calculator results
+    const result =
+        document.getElementById("result");
 
-if (result) {
-    result.style.display = "block";
-}
+    if (result) {
+        result.style.display = "block";
+    }
 
 
     // Track calculator use
@@ -145,10 +155,108 @@ if (result) {
 
 
 function trackCalculator() {
+
     if (typeof gtag === "function") {
-        gtag("event", "calculator_completed", {
-            calculator_name:
-                "AI Time Savings Calculator"
-        });
+
+        gtag(
+            "event",
+            "calculator_completed",
+            {
+                calculator_name:
+                    "AI Time Savings Calculator"
+            }
+        );
+
     }
+
+}
+
+
+// Reset dashboard safely
+const resetButton =
+    document.getElementById("reset-dashboard");
+
+if (resetButton) {
+
+    resetButton.addEventListener(
+        "click",
+        function() {
+
+            localStorage.clear();
+
+            location.reload();
+
+        }
+    );
+
+}
+
+
+// Load saved dashboard values
+const savedRate =
+    localStorage.getItem("aiRate");
+
+const savedTime =
+    localStorage.getItem("aiTimeSaved");
+
+const savedAnnual =
+    localStorage.getItem("aiAnnualValue");
+
+
+const rateValue =
+    document.getElementById("rateValue");
+
+const timeValue =
+    document.getElementById("timeValue");
+
+const annualValue =
+    document.getElementById("annualValue");
+
+
+if (savedRate && rateValue) {
+
+    rateValue.textContent =
+        "$" + savedRate + "/hr";
+
+}
+
+
+if (savedTime && timeValue) {
+
+    timeValue.textContent =
+        savedTime + " hrs";
+
+}
+
+
+if (savedAnnual && annualValue) {
+
+    annualValue.textContent =
+        "$" +
+        Number(savedAnnual).toLocaleString();
+
+}
+
+
+// Load the last calculation date
+const lastCalculated =
+    localStorage.getItem(
+        "lastCalculated"
+    );
+
+const lastCalculatedElement =
+    document.getElementById(
+        "last-calculated"
+    );
+
+
+if (
+    lastCalculated &&
+    lastCalculatedElement
+) {
+
+    lastCalculatedElement.textContent =
+        "Last calculation: " +
+        lastCalculated;
+
 }
