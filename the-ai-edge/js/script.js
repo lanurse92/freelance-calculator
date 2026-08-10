@@ -194,7 +194,7 @@ if (resetButton) {
 
 // Load saved dashboard values
 const savedRate =
-    localStorage.getItem("aiRate");
+    localStorage.getItem("freelanceRate");
 
 const savedTime =
     localStorage.getItem("aiTimeSaved");
