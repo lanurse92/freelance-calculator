@@ -378,7 +378,10 @@ localStorage.setItem(
     "freelanceRate",
     hourlyRate.toFixed(0)
 );
-
+localStorage.setItem(
+    "lastCalculated",
+    new Date().toLocaleDateString()
+);
     document.getElementById("calculatorMessage").textContent =
         "Based on your goals, you should consider charging about $" +
         hourlyRate.toFixed(0) +
