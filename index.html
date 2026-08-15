@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>AI Productivity Calculator | Calculate Your AI Time Savings</title>
-<meta name="description" content="Use our free AI Productivity Calculator to estimate how much time and money AI tools can save freelancers, creators, and small businesses.">"
+<meta name="description" content="Use our free AI Productivity Calculator to estimate how much time and money AI tools can save freelancers, creators, and small businesses.">
 
 <meta property="og:title" content="AI Productivity Calculator | See How Much AI Can Save You">
 
@@ -29,8 +29,8 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="the-ai-edge/css/style.css">
-<link rel="stylesheet" href="the-ai-edge/css/home.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/home.css">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD9NBG77E"></script>
 <script>
@@ -40,6 +40,9 @@
 
   gtag('config', 'G-TGD9NBG77E');
 </script>
+
+</head>
+
 <body>
 
 <nav class="navbar">
@@ -55,8 +58,6 @@
       <a href="#newsletter">Newsletter</a>
       <a href="#" class="nav-button">Free Toolkit</a>
     </div>
-
-</head>
 
   </div>
 </nav>
@@ -183,10 +184,6 @@ Grow Your Freelance Business<br>
     </div>
 
 </div>
-
-<button id="reset-dashboard" class="reset-button">
-    Reset Dashboard
-</button>
 <p id="last-calculated" class="last-calculated">
     Last calculation: Not available
 </p>
@@ -234,8 +231,7 @@ Grow Your Freelance Business<br>
     </div>
 
 </section>
-<section class="tools">
-
+<section class="tools" id="tools"></section>
     <div class="container">
 
         <div class="section-header">
@@ -252,7 +248,6 @@ Grow Your Freelance Business<br>
         <div class="tools-grid">
 
     <div class="tool-card">
-        <div class="tool-card">
 
     <div class="tool-icon">
         <i data-lucide="wallet"></i>
@@ -278,10 +273,8 @@ Grow Your Freelance Business<br>
     </a>
 
 </div>
-    </div>
 
     <div class="tool-card">
-        <div class="tool-card">
 
     <div class="tool-icon">
         <i data-lucide="clock"></i>
@@ -487,39 +480,12 @@ data-beehiiv-form="bd93e433-dab6-4eb0-808a-efa3aaccf06a"></script>
     </div>
 
 </footer>
-<script src="the-ai-edge/js/script.js"></script>
+<script src="js/script.js"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
 
 <script>
   lucide.createIcons();
 </script>
 <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
-
-<script>
-window.addEventListener("DOMContentLoaded", function () {
-
-    const savedRate = localStorage.getItem("aiRate");
-    const savedTime = localStorage.getItem("aiTimeSaved");
-    const savedAnnual = localStorage.getItem("aiAnnualValue");
-
-    const rateCard = document.getElementById("rateValue");
-    const timeCard = document.getElementById("timeValue");
-    const annualCard = document.getElementById("annualValue");
-
-    if (savedRate && rateCard) {
-        rateCard.textContent = "$" + savedRate + "/hr";
-    }
-
-    if (savedTime && timeCard) {
-        timeCard.textContent = savedTime + " hrs";
-    }
-
-    if (savedAnnual && annualCard) {
-        annualCard.textContent =
-            "$" + Number(savedAnnual).toLocaleString();
-    }
-
-});
-</script>
 </body>
 </html>

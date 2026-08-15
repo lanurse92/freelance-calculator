@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Freelance Rate Calculator | The AI Edge</title>
+
+    <meta
+        name="description"
+        content="Calculate the hourly freelance rate you should charge based on your income goals, expenses, billable hours, and taxes."
+    >
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="container">
+
+        <a href="index.html" class="logo">
+            <i data-lucide="sparkles" class="logo-icon"></i>
+            The AI Edge
+        </a>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#tools">Tools</a>
+            <a href="index.html#newsletter">Newsletter</a>
+        </div>
+
+    </div>
+</nav>
+
+
+<section class="calculator-page">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-tag">
+                FREE FREELANCE TOOL
+            </span>
+
+            <h1>
+                Freelance Rate Calculator
+            </h1>
+
+            <p>
+                Find the hourly rate you should charge based on your income goals,
+                business expenses, billable hours, and estimated taxes.
+            </p>
+
+        </div>
+
+
+        <div class="calculator-card">
+
+            <div class="calculator-form">
+
+                <div class="form-group">
+
+                    <label for="income">
+                        Desired Annual Income
+                    </label>
+
+                    <div class="input-wrapper">
+                        <span>$</span>
+
+                        <input
+                            type="number"
+                            id="income"
+                            placeholder="60000"
+                            min="0"
+                        >
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="expenses">
+                        Annual Business Expenses
+                    </label>
+
+                    <div class="input-wrapper">
+                        <span>$</span>
+
+                        <input
+                            type="number"
+                            id="expenses"
+                            placeholder="10000"
+                            min="0"
+                        >
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="hours">
+                        Billable Hours Per Week
+                    </label>
+
+                    <input
+                        type="number"
+                        id="hours"
+                        placeholder="25"
+                        min="1"
+                        max="80"
+                    >
+
+                    <small>
+                        Only include hours you expect to actually bill clients.
+                    </small>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="weeks">
+                        Weeks Worked Per Year
+                    </label>
+
+                    <input
+                        type="number"
+                        id="weeks"
+                        value="48"
+                        min="1"
+                        max="52"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="tax">
+                        Estimated Tax Rate
+                    </label>
+
+                    <div class="input-wrapper">
+                        <input
+                            type="number"
+                            id="tax"
+                            value="25"
+                            min="0"
+                            max="60"
+                        >
+
+                        <span>%</span>
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="primary-btn calculator-button"
+                    onclick="calculateRate()"
+                >
+                    Calculate My Rate
+                </button>
+
+            </div>
+
+
+            <div
+                class="calculator-results"
+                id="results"
+            >
+
+                <div class="results-header">
+                    <h2>Your Recommended Rate</h2>
+                    <p>
+                        Based on the numbers you entered.
+                    </p>
+                </div>
+
+
+                <div class="main-result">
+
+                    <span>Recommended Hourly Rate</span>
+
+                    <strong id="hourlyResult">
+                        $0/hr
+                    </strong>
+
+                </div>
+
+
+                <div class="result-grid">
+
+                    <div class="result-box">
+
+                        <span>Daily Rate</span>
+
+                        <strong id="dailyResult">
+                            $0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-box">
+
+                        <span>Weekly Revenue</span>
+
+                        <strong id="weeklyResult">
+                            $0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-box">
+
+                        <span>Annual Revenue Goal</span>
+
+                        <strong id="annualResult">
+                            $0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-box">
+
+                        <span>Estimated Taxes</span>
+
+                        <strong id="taxResult">
+                            $0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="calculator-message"
+                    id="calculatorMessage"
+                >
+                    Enter your information and calculate your recommended rate.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer class="footer">
+
+    <div class="container">
+
+        <div class="footer-bottom">
+            © 2026 The AI Edge. All rights reserved.
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<script>
+
+function calculateRate() {
+
+    const income =
+        Number(document.getElementById("income").value);
+
+    const expenses =
+        Number(document.getElementById("expenses").value);
+
+    const hours =
+        Number(document.getElementById("hours").value);
+
+    const weeks =
+        Number(document.getElementById("weeks").value);
+
+    const taxRate =
+        Number(document.getElementById("tax").value);
+
+
+    if (
+        income <= 0 ||
+        hours <= 0 ||
+        weeks <= 0 ||
+        taxRate < 0 ||
+        taxRate >= 100
+    ) {
+
+        alert("Please enter valid numbers in all required fields.");
+
+        return;
+    }
+
+
+    /*
+        Calculate the amount that must be earned
+        before taxes are taken out.
+    */
+
+    const preTaxGoal =
+        (income + expenses) /
+        (1 - taxRate / 100);
+
+
+    /*
+        Calculate total annual billable hours.
+    */
+
+    const annualBillableHours =
+        hours * weeks;
+
+
+    /*
+        Recommended hourly rate.
+    */
+
+    const hourlyRate =
+        preTaxGoal / annualBillableHours;
+
+
+    /*
+        Additional calculations.
+    */
+
+    const dailyRate =
+        hourlyRate * 8;
+
+    const weeklyRevenue =
+        hourlyRate * hours;
+
+    const estimatedTaxes =
+        preTaxGoal - income - expenses;
+
+
+    /*
+        Display results.
+    */
+
+    document.getElementById("hourlyResult").textContent =
+        "$" + hourlyRate.toFixed(0) + "/hr";
+
+    document.getElementById("dailyResult").textContent =
+        "$" + dailyRate.toFixed(0);
+
+    document.getElementById("weeklyResult").textContent =
+        "$" + weeklyRevenue.toFixed(0);
+
+    document.getElementById("annualResult").textContent =
+        "$" + preTaxGoal.toFixed(0);
+
+    document.getElementById("taxResult").textContent =
+        "$" + estimatedTaxes.toFixed(0);
+localStorage.setItem(
+    "freelanceRate",
+    hourlyRate.toFixed(0)
+);
+localStorage.setItem(
+    "lastCalculated",
+    new Date().toLocaleDateString()
+);
+    document.getElementById("calculatorMessage").textContent =
+        "Based on your goals, you should consider charging about $" +
+        hourlyRate.toFixed(0) +
+        " per hour.";
+}
+
+
+lucide.createIcons();
+
+</script>
+
+</body>
+</html>
