@@ -257,7 +257,11 @@
                 >
                     Enter your information and calculate your recommended rate.
                 </div>
-
+<div class="share-results">
+    <button type="button" onclick="shareRate()">
+        Share My Results
+    </button>
+</div>
             </div>
 
         </div>
@@ -388,7 +392,33 @@ localStorage.setItem(
         " per hour.";
 }
 
+function shareRate() {
 
+    const rate =
+        document.getElementById("hourlyResult").textContent;
+
+    const shareText =
+        "I just calculated my recommended freelance rate: " +
+        rate +
+        " using The AI Edge Freelance Rate Calculator.";
+
+    if (navigator.share) {
+
+        navigator.share({
+            title: "My Freelance Rate",
+            text: shareText,
+            url: window.location.href
+        });
+
+    } else {
+
+        navigator.clipboard.writeText(
+            shareText + " " + window.location.href
+        );
+
+        alert("Your result has been copied. You can paste it anywhere to share!");
+    }
+}
 lucide.createIcons();
 
 </script>

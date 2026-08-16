@@ -292,7 +292,11 @@ document.getElementById("result").innerHTML = `
 <p>
 That's the equivalent of gaining more time without adding extra working hours.
 </p>
-
+<div class="share-results">
+    <button type="button" onclick="shareTimeSavings()">
+        Share My Results
+    </button>
+</div>
 `;
 
 }
@@ -304,6 +308,33 @@ function trackCalculator(){
         calculator_name: 'AI Time Savings Calculator'
     });
 
+}
+function shareTimeSavings() {
+
+    const results =
+        document.querySelector(".result-grid").innerText;
+
+    const shareText =
+        "I just calculated how much time AI could save me: " +
+        results +
+        " — using The AI Edge AI Time Savings Calculator.";
+
+    if (navigator.share) {
+
+        navigator.share({
+            title: "My AI Time Savings",
+            text: shareText,
+            url: window.location.href
+        });
+
+    } else {
+
+        navigator.clipboard.writeText(
+            shareText + " " + window.location.href
+        );
+
+        alert("Your results have been copied. You can paste them anywhere to share!");
+    }
 }
 </script>
 
