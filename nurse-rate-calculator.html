@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nurse Pay Calculator | The AI Edge</title>
+<meta
+name="description"
+content="Estimate the hourly pay range you should expect as a staff, per-diem, or travel nurse based on specialty, shift, and location."
+>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/home.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+rel="stylesheet"
+>
+<style>
+.calc-disclaimer {
+font-size: 13px;
+color: #888780;
+margin-top: 12px;
+line-height: 1.5;
+}
+.calc-crosslink {
+text-align: center;
+margin-top: 24px;
+font-size: 14px;
+color: #5f5e5a;
+}
+.calc-crosslink a {
+color: #085041;
+font-weight: 600;
+}
+</style>
+</head>
+<body>
+<nav class="navbar">
+<div class="container">
+<a href="index.html" class="logo">
+<i data-lucide="sparkles" class="logo-icon"></i>
+The AI Edge
+</a>
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="index.html#tools">Tools</a>
+<a href="index.html#newsletter">Newsletter</a>
+</div>
+</div>
+</nav>
+
+<section class="calculator-page">
+<div class="container">
+<div class="section-header">
+<span class="section-tag">
+FREE NURSE TOOL
+</span>
+<h1>
+Nurse Pay Calculator
+</h1>
+<p>
+Estimate the hourly pay range you should expect based on your
+specialty, employment type, shift, and experience.
+</p>
+</div>
+
+<div class="calculator-card">
+<div class="calculator-form">
+<div class="form-group">
+<label for="employmentType">
+Employment Type
+</label>
+<select id="employmentType">
+<option value="staff">Staff</option>
+<option value="perdiem">Per-diem</option>
+<option value="travel">Travel contract</option>
+</select>
+</div>
+
+<div class="form-group">
+<label for="specialty">
+Specialty
+</label>
+<select id="specialty">
+<option value="medsurg">Med-Surg</option>
+<option value="icu">ICU</option>
+<option value="er">ER</option>
+<option value="or">OR</option>
+<option value="ld">L&amp;D</option>
+<option value="stepdown">Stepdown</option>
+<option value="pacu">PACU</option>
+<option value="homehealth">Home Health</option>
+<option value="other">Other</option>
+</select>
+</div>
+
+<div class="form-group">
+<label for="shiftType">
+Shift Type
+</label>
+<select id="shiftType">
+<option value="day">Day</option>
+<option value="night">Night</option>
+<option value="rotating">Rotating</option>
+</select>
+</div>
+
+<div class="form-group">
+<label for="weekendShifts">
+Weekend Shifts Per Pay Period
+</label>
+<input type="number" id="weekendShifts" placeholder="0" min="0" max="14" value="0">
+</div>
+
+<div class="form-group">
+<label for="experience">
+Years of Experience
+</label>
+<input type="number" id="experience" placeholder="3" min="0" max="50" value="3">
+</div>
+
+<button type="button" class="primary-btn calculator-button" onclick="calculateNurseRate()">
+Calculate My Rate Range
+</button>
+
+<p class="calc-disclaimer">
+This gives an estimated range based on general market patterns, not a
+guarantee. Actual pay varies by facility, region, and demand \u2014 always
+confirm against local postings or a recruiter.
+</p>
+</div>
+
+<div class="calculator-results" id="results">
+<div class="results-header">
+<h2>Your Estimated Pay Range</h2>
+<p>
+Based on the numbers you entered.
+</p>
+</div>
+
+<div class="main-result">
+<span>Estimated Hourly Range</span>
+<strong id="hourlyResult">
+$0\u2013$0/hr
+</strong>
+</div>
+
+<div class="result-grid">
+<div class="result-box">
+<span>Low End</span>
+<strong id="nurseLowResult">$0/hr</strong>
+</div>
+<div class="result-box">
+<span>Mid Range</span>
+<strong id="nurseMidResult">$0/hr</strong>
+</div>
+<div class="result-box">
+<span>High End</span>
+<strong id="nurseHighResult">$0/hr</strong>
+</div>
+<div class="result-box">
+<span>Weekly Estimate</span>
+<strong id="nurseWeeklyResult">$0</strong>
+</div>
+</div>
+
+<div class="calculator-message" id="calculatorMessage">
+Enter your information and calculate your estimated pay range.
+</div>
+
+<div class="share-results">
+<button type="button" onclick="shareRate()">
+Share My Results
+</button>
+</div>
+</div>
+
+<div class="calc-crosslink">
+Freelancer instead? <a href="freelance-rate-calculator.html">Try the Freelance Rate Calculator</a>
+</div>
+</div>
+</div>
+</section>
+
+<footer class="footer">
+<div class="container">
+<div class="footer-bottom">
+\u00a9 2026 The AI Edge. All rights reserved.
+</div>
+</div>
+</footer>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+/*
+Base national hourly rate ranges by specialty (staff, day shift baseline).
+These are placeholder starting points \u2014 replace with real benchmark data
+(e.g. BLS metro-level wage data) before relying on this for real guidance.
+*/
+const nurseBaseRates = {
+medsurg: { low: 32, high: 42 },
+icu: { low: 38, high: 52 },
+er: { low: 37, high: 50 },
+or: { low: 38, high: 51 },
+ld: { low: 36, high: 48 },
+stepdown: { low: 35, high: 46 },
+pacu: { low: 37, high: 49 },
+homehealth: { low: 30, high: 40 },
+other: { low: 32, high: 44 }
+};
+
+const employmentMultiplier = {
+staff: 1.0,
+perdiem: 1.2,
+travel: 1.45
+};
+
+function calculateNurseRate() {
+const employmentType = document.getElementById("employmentType").value;
+const specialty = document.getElementById("specialty").value;
+const shiftType = document.getElementById("shiftType").value;
+const weekendShifts = Number(document.getElementById("weekendShifts").value);
+const experience = Number(document.getElementById("experience").value);
+
+const base = nurseBaseRates[specialty];
+const multiplier = employmentMultiplier[employmentType];
+
+let low = base.low * multiplier;
+let high = base.high * multiplier;
+
+if (shiftType === "night") {
+low += 3;
+high += 6;
+} else if (shiftType === "rotating") {
+low += 1.5;
+high += 3;
+}
+
+const weekendBump = Math.min(weekendShifts, 6) * 0.5;
+low += weekendBump;
+high += weekendBump;
+
+if (experience >= 10) {
+low *= 1.08;
+high *= 1.08;
+} else if (experience >= 5) {
+low *= 1.04;
+high *= 1.04;
+}
+
+const mid = (low + high) / 2;
+const weeklyEstimate = mid * 36;
+
+document.getElementById("hourlyResult").textContent =
+"$" + low.toFixed(0) + "\u2013$" + high.toFixed(0) + "/hr";
+document.getElementById("nurseLowResult").textContent = "$" + low.toFixed(0) + "/hr";
+document.getElementById("nurseMidResult").textContent = "$" + mid.toFixed(0) + "/hr";
+document.getElementById("nurseHighResult").textContent = "$" + high.toFixed(0) + "/hr";
+document.getElementById("nurseWeeklyResult").textContent = "$" + weeklyEstimate.toFixed(0);
+
+localStorage.setItem("nurseRateLow", low.toFixed(0));
+localStorage.setItem("nurseRateHigh", high.toFixed(0));
+localStorage.setItem("lastCalculated", new Date().toLocaleDateString());
+
+document.getElementById("calculatorMessage").textContent =
+"Based on what you entered, expect roughly $" + low.toFixed(0) + "\u2013$" + high.toFixed(0) +
+"/hr. This is an estimate \u2014 confirm against local postings or a recruiter.";
+}
+
+function shareRate() {
+const rate = document.getElementById("hourlyResult").textContent;
+const shareText =
+"I just calculated my estimated nurse pay range: " + rate + " using The AI Edge Nurse Pay Calculator.";
+
+if (navigator.share) {
+navigator.share({
+title: "My Nurse Pay Range",
+text: shareText,
+url: window.location.href
+});
+} else {
+navigator.clipboard.writeText(shareText + " " + window.location.href);
+alert("Your result has been copied. You can paste it anywhere to share!");
+}
+}
+
+lucide.createIcons();
+</script>
+</body>
+</html>

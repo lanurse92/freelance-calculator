@@ -310,7 +310,9 @@ function trackCalculator(){
 
 }
 function shareTimeSavings() {
-
+gtag('event', 'share_results', {
+    calculator_name: 'AI Time Savings Calculator'
+});
     const results =
         document.querySelector(".result-grid").innerText;
 

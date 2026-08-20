@@ -394,6 +394,11 @@ localStorage.setItem(
 
 function shareRate() {
 
+    if (typeof gtag === "function") {
+        gtag('event', 'share_results', {
+            calculator_name: 'Freelance Rate Calculator'
+        });
+    }
     const rate =
         document.getElementById("hourlyResult").textContent;
 
