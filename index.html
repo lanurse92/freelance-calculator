@@ -62,10 +62,14 @@ and grow a more profitable business.
 <strong>Start with the free AI Productivity Toolkit.</strong>
 </p>
 <div class="hero-buttons">
-<a href="freelance-rate-calculator.html" class="primary-btn">
+<a href="freelance-rate-calculator.html"
+   class="primary-btn"
+   onclick="trackToolLaunch('freelance_rate_calculator')">
 Calculate My Rate
 </a>
-<a href="ai-time-savings-calculator.html" class="secondary-btn">
+<a href="ai-time-savings-calculator.html"
+   class="secondary-btn"
+   onclick="trackToolLaunch('ai_time_savings_calculator')">
 See AI Savings
 </a>
 </div>
@@ -207,7 +211,9 @@ your goals, expenses, and experience.
 <span>&#x23F1; 2 min</span>
     <span class="free-badge">Free</span>
 </div>
-<a href="freelance-rate-calculator.html" class="tool-button">
+<a href="freelance-rate-calculator.html"
+   class="tool-button"
+   onclick="trackToolLaunch('freelance_rate_calculator')">
 Launch Calculator &#x2192;
 </a>
 </div>
@@ -225,7 +231,9 @@ per-diem, or travel nurse based on specialty and shift.
 <span>&#x23F1; 2 min</span>
 <span class="free-badge">Free</span>
 </div>
-<a href="nurse-rate-calculator.html" class="tool-button">
+<a href="nurse-rate-calculator.html"
+   class="tool-button"
+   onclick="trackToolLaunch('nurse_pay_calculator')">
 Launch Calculator &#x2192;
 </a>
 </div>
@@ -243,8 +251,10 @@ every week as a freelancer.
 <span>&#x23F1; 2 min</span>
 <span class="free-badge">Free</span>
 </div>
-<a href="./ai-time-savings-calculator.html">
-Try Calculator
+<a href="ai-time-savings-calculator.html"
+   class="tool-button"
+   onclick="trackToolLaunch('ai_time_savings_calculator')">
+Launch Calculator &#x2192;
 </a>
 </div>
 </div> <!-- closes tools-grid -->
@@ -375,6 +385,15 @@ Free Toolkit
 <script src="js/script.js"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
 <script>
+function trackToolLaunch(toolName) {
+    if (typeof gtag === "function") {
+        gtag("event", "tool_launched", {
+            event_category: "tools",
+            tool_name: toolName
+        });
+    }
+}
+
 lucide.createIcons();
 </script>
 <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>

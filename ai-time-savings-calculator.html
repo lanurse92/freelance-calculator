@@ -289,6 +289,8 @@ document.getElementById("result").innerHTML = `
 
 </div>
 
+</div>
+
 <p>
 That's the equivalent of gaining more time without adding extra working hours.
 </p>
@@ -297,7 +299,24 @@ That's the equivalent of gaining more time without adding extra working hours.
         Share My Results
     </button>
 </div>
+<div class="toolkit-cta" style="margin-top: 30px;">
+    <h3>Want More Ways to Save Time?</h3>
+
+    <p style="margin-bottom: 20px;">
+        Get the free AI Productivity Toolkit from The AI Edge —
+        practical AI tools and strategies designed to help you work
+        smarter and save time.
+    </p>
+
+    <a href="index.html#newsletter"
+       class="nav-button"
+       onclick="trackToolkitClick()">
+        Get the Free Toolkit
+    </a>
+</div>
 `;
+
+trackCalculator();
 
 }
 
@@ -308,6 +327,14 @@ function trackCalculator(){
         calculator_name: 'AI Time Savings Calculator'
     });
 
+}
+function trackToolkitClick() {
+    if (typeof gtag === "function") {
+        gtag("event", "free_toolkit_clicked", {
+            event_category: "conversion",
+            event_label: "AI Time Savings Calculator"
+        });
+    }
 }
 function shareTimeSavings() {
 gtag('event', 'share_results', {

@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD9NBG77E"></script>
+
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-TGD9NBG77E');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nurse Pay Calculator | The AI Edge</title>
@@ -179,11 +188,14 @@ $0&ndash;$0/hr
     <h3>Want More AI Tools?</h3>
 
     <p style="margin-bottom: 20px;">
-        Get the free AI Productivity Toolkit and discover practical
-        ways to save time and grow your freelance business.
+        Get the free AI Productivity Toolkit from The AI Edge —
+        practical AI tools and strategies designed to help you work
+        smarter and save time.
     </p>
 
-    <a href="index.html#newsletter" class="nav-button">
+    <a href="index.html#newsletter"
+   class="nav-button"
+   onclick="trackToolkitClick()">
     Get the Free Toolkit
 </a>
 </div>
@@ -279,9 +291,31 @@ localStorage.setItem("lastCalculated", new Date().toLocaleDateString());
 document.getElementById("calculatorMessage").textContent =
 "Based on what you entered, expect roughly $" + low.toFixed(0) + "\u2013$" + high.toFixed(0) +
 "/hr. This is an estimate \u2014 confirm against local postings or a recruiter.";
+trackNurseCalculator();}
+function trackNurseCalculator() {
+    if (typeof gtag === "function") {
+        gtag("event", "nurse_rate_calculated", {
+            event_category: "calculator",
+            event_label: "Nurse Pay Calculator"
+        });
+    }
 }
 
+function trackToolkitClick() {
+    if (typeof gtag === "function") {
+        gtag("event", "free_toolkit_clicked", {
+            event_category: "conversion",
+            event_label: "Nurse Pay Calculator"
+        });
+    }
+}
 function shareRate() {
+    if (typeof gtag === "function") {
+    gtag("event", "nurse_rate_shared", {
+        event_category: "calculator",
+        event_label: "Nurse Pay Calculator"
+    });
+}
 const rate = document.getElementById("hourlyResult").textContent;
 const shareText =
 "I just calculated my estimated nurse pay range: " + rate + " using The AI Edge Nurse Pay Calculator.";
