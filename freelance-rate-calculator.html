@@ -421,9 +421,8 @@ trackFreelanceCalculator();
 }
 function trackFreelanceCalculator() {
     if (typeof gtag === "function") {
-        gtag("event", "freelance_rate_calculated", {
-            event_category: "calculator",
-            event_label: "Freelance Rate Calculator"
+        gtag("event", "calculator_completed", {
+            calculator_name: "Freelance Rate Calculator"
         });
     }
 }

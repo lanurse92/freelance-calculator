@@ -295,9 +295,8 @@ document.getElementById("calculatorMessage").textContent =
 trackNurseCalculator();}
 function trackNurseCalculator() {
     if (typeof gtag === "function") {
-        gtag("event", "nurse_rate_calculated", {
-            event_category: "calculator",
-            event_label: "Nurse Pay Calculator"
+        gtag("event", "calculator_completed", {
+            calculator_name: "Nurse Pay Calculator"
         });
     }
 }
