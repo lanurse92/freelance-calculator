@@ -29,6 +29,18 @@ gtag('config', 'G-TGD9NBG77E');
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
         rel="stylesheet"
     >
+    <style>
+.calc-crosslink {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 14px;
+    color: #5f5e5a;
+}
+.calc-crosslink a {
+    color: #085041;
+    font-weight: 600;
+}
+</style>
 </head>
 
 <body>
@@ -275,10 +287,10 @@ gtag('config', 'G-TGD9NBG77E');
     <h3>Get More Tools Like This</h3>
 
     <p style="margin-bottom: 20px;">
-        Join The AI Edge newsletter and get the free AI Productivity Toolkit —
-        plus more calculators, practical AI tools, and strategies to help you
-        price smarter, save time, and grow your freelance business.
-    </p>
+    Want a script for actually pitching this rate to clients? Join The AI Edge
+    newsletter and get the free AI Productivity Toolkit — plus more calculators
+    and tools to help you price with confidence.
+</p>
 
     <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js"
         data-beehiiv-form="bd93e433-dab6-4eb0-808a-efa3aaccf06a"></script>
@@ -289,7 +301,15 @@ gtag('config', 'G-TGD9NBG77E');
 </div>
 
 </div>
+        </div>
 
+        <div class="calc-crosslink">
+            Nurse instead? <a href="nurse-rate-calculator.html">Try the Nurse Pay Calculator</a>
+        </div>
+
+    </div>
+
+</section>
         </div>
 
     </div>
@@ -466,6 +486,50 @@ function shareRate() {
         alert("Your result has been copied. You can paste it anywhere to share!");
     }
 }
+// --- Funnel tracking additions ---
+
+// 1. Fires once, the first time a user touches any input
+let calculatorStarted = false;
+function trackCalculatorStarted() {
+  if (calculatorStarted) return;
+  calculatorStarted = true;
+  if (typeof gtag === "function") {
+    gtag("event", "calculator_started", {
+      calculator_name: "Freelance Rate Calculator"
+    });
+  }
+}
+
+document.querySelectorAll("#income, #expenses, #hours, #weeks, #tax")
+  .forEach(el => el.addEventListener("input", trackCalculatorStarted, { once: true }));
+
+// 2. Track when the newsletter/toolkit CTA block scrolls into view
+const toolkitEl = document.querySelector(".toolkit-cta");
+if (toolkitEl && "IntersectionObserver" in window) {
+  const toolkitObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && typeof gtag === "function") {
+        gtag("event", "toolkit_cta_viewed", {
+          calculator_name: "Freelance Rate Calculator"
+        });
+        toolkitObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.5 });
+  toolkitObserver.observe(toolkitEl);
+}
+// Track clicks on the cross-link to the Nurse Pay Calculator
+document.querySelector(".calc-crosslink a")?.addEventListener("click", function () {
+  if (typeof gtag === "function") {
+    gtag("event", "crosslink_clicked", {
+      from_calculator: "Freelance Rate Calculator",
+      to_page: "nurse-rate-calculator.html"
+    });
+  }
+});
+document.querySelector(".toolkit-cta")?.addEventListener("click", function () {
+  trackToolkitClick();
+}, { once: true });
 lucide.createIcons();
 
 </script>

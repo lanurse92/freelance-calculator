@@ -188,9 +188,9 @@ $0&ndash;$0/hr
     <h3>Get More Tools Like This</h3>
 
     <p style="margin-bottom: 20px;">
-    Join The AI Edge newsletter and get the free AI Productivity Toolkit —
-    plus more calculators, practical AI tools, and strategies to help you
-    price smarter, save time, and grow your freelance business.
+    Want help negotiating this range with a manager or recruiter? Join The AI
+    Edge newsletter and get the free AI Productivity Toolkit — plus more
+    calculators and tools built for nurses.
 </p>
 
     <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js"
@@ -221,19 +221,19 @@ Freelancer instead? <a href="freelance-rate-calculator.html">Try the Freelance R
 <script>
 /*
 Base national hourly rate ranges by specialty (staff, day shift baseline).
-These are placeholder starting points \u2014 replace with real benchmark data
-(e.g. BLS metro-level wage data) before relying on this for real guidance.
+Reviewed and finalized — sourced from national wage data, with Med-Surg,
+Stepdown, and OR confirmed against Ashley's clinical experience.
 */
 const nurseBaseRates = {
-medsurg: { low: 32, high: 42 },
-icu: { low: 38, high: 52 },
-er: { low: 37, high: 50 },
-or: { low: 38, high: 51 },
-ld: { low: 36, high: 48 },
-stepdown: { low: 35, high: 46 },
-pacu: { low: 37, high: 49 },
-homehealth: { low: 30, high: 40 },
-other: { low: 32, high: 44 }
+  medsurg: { low: 32, high: 44 },
+  icu: { low: 38, high: 54 },
+  er: { low: 37, high: 52 },
+  or: { low: 36, high: 52 },
+  ld: { low: 34, high: 48 },
+  stepdown: { low: 34, high: 46 },
+  pacu: { low: 37, high: 53 },
+  homehealth: { low: 28, high: 40 },
+  other: { low: 32, high: 46 }
 };
 
 const employmentMultiplier = {
@@ -331,7 +331,52 @@ navigator.clipboard.writeText(shareText + " " + window.location.href);
 alert("Your result has been copied. You can paste it anywhere to share!");
 }
 }
+// --- Funnel tracking additions ---
 
+// 1. Fires once, the first time a user touches any input (shows real engagement vs. bounce)
+let calculatorStarted = false;
+function trackCalculatorStarted() {
+  if (calculatorStarted) return;
+  calculatorStarted = true;
+  if (typeof gtag === "function") {
+    gtag("event", "calculator_started", {
+      calculator_name: "Nurse Pay Calculator"
+    });
+  }
+}
+
+document.querySelectorAll("#employmentType, #specialty, #shiftType, #weekendShifts, #experience")
+  .forEach(el => el.addEventListener("input", trackCalculatorStarted, { once: true }));
+
+// 2. Track clicks on the cross-link to the Freelance Rate Calculator
+document.querySelector(".calc-crosslink a")?.addEventListener("click", function () {
+  if (typeof gtag === "function") {
+    gtag("event", "crosslink_clicked", {
+      from_calculator: "Nurse Pay Calculator",
+      to_page: "freelance-rate-calculator.html"
+    });
+  }
+});
+
+// 3. Track when the newsletter/toolkit CTA block actually scrolls into view
+// (tells you if people who complete the calculator ever see the offer)
+const toolkitEl = document.querySelector(".toolkit-cta");
+if (toolkitEl && "IntersectionObserver" in window) {
+  const toolkitObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && typeof gtag === "function") {
+        gtag("event", "toolkit_cta_viewed", {
+          calculator_name: "Nurse Pay Calculator"
+        });
+        toolkitObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.5 });
+  toolkitObserver.observe(toolkitEl);
+}
+document.querySelector(".toolkit-cta")?.addEventListener("click", function () {
+  trackToolkitClick();
+}, { once: true });
 lucide.createIcons();
 </script>
 </body>
