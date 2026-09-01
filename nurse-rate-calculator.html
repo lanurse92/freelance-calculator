@@ -290,9 +290,12 @@ localStorage.setItem("nurseRateHigh", high.toFixed(0));
 localStorage.setItem("lastCalculated", new Date().toLocaleDateString());
 
 document.getElementById("calculatorMessage").textContent =
-"Based on what you entered, expect roughly $" + low.toFixed(0) + "\u2013$" + high.toFixed(0) +
-"/hr. This is an estimate \u2014 confirm against local postings or a recruiter.";
-trackNurseCalculator();}
+"Based on what you entered, expect roughly $" + low.toFixed(0) + "–$" + high.toFixed(0) +
+"/hr. This is an estimate — confirm against local postings or a recruiter.";
+trackNurseCalculator();
+
+document.getElementById("results").scrollIntoView({ behavior: "smooth", block: "start" });
+}
 function trackNurseCalculator() {
     if (typeof gtag === "function") {
         gtag("event", "calculator_completed", {

@@ -436,6 +436,8 @@ localStorage.setItem(
     " per hour.";
 
 trackFreelanceCalculator();
+
+document.getElementById("results").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 function trackFreelanceCalculator() {
     if (typeof gtag === "function") {
