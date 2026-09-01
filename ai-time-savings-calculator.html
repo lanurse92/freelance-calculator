@@ -386,7 +386,40 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 });
+// Fires once, first time a user touches any input
+let calculatorStarted = false;
+function trackCalculatorStarted() {
+  if (calculatorStarted) return;
+  calculatorStarted = true;
+  if (typeof gtag === "function") {
+    gtag("event", "calculator_started", {
+      calculator_name: "AI Time Savings Calculator"
+    });
+  }
+}
+document.querySelectorAll("#rate, #hours, #saving, #weeks")
+  .forEach(el => el.addEventListener("input", trackCalculatorStarted, { once: true }));
 
+// Track when the CTA box scrolls into view
+const toolkitEl = document.querySelector(".cta-box");
+if (toolkitEl && "IntersectionObserver" in window) {
+  const toolkitObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && typeof gtag === "function") {
+        gtag("event", "toolkit_cta_viewed", {
+          calculator_name: "AI Time Savings Calculator"
+        });
+        toolkitObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.1 });
+  toolkitObserver.observe(toolkitEl);
+}
+
+// Wire up the existing (currently unused) trackToolkitClick function
+document.querySelector(".cta-box")?.addEventListener("click", function () {
+  trackToolkitClick();
+}, { once: true });
 </script>
 
 

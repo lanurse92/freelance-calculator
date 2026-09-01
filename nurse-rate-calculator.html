@@ -371,7 +371,7 @@ if (toolkitEl && "IntersectionObserver" in window) {
         toolkitObserver.disconnect();
       }
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.1 }); // or even 0, "any part visible"
   toolkitObserver.observe(toolkitEl);
 }
 document.querySelector(".toolkit-cta")?.addEventListener("click", function () {
