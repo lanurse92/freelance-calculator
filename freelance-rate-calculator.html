@@ -455,10 +455,21 @@ function trackFreelanceCalculator() {
             calculator_name: "Freelance Rate Calculator"
         });
     }
+    if (typeof fbq === "function") {
+        fbq("trackCustom", "calculator_completed", {
+            calculator_name: "Freelance Rate Calculator"
+        });
+    }
 }
 function trackToolkitClick() {
     if (typeof gtag === "function") {
         gtag("event", "free_toolkit_clicked", {
+            event_category: "conversion",
+            event_label: "Freelance Rate Calculator"
+        });
+    }
+    if (typeof fbq === "function") {
+        fbq("trackCustom", "free_toolkit_clicked", {
             event_category: "conversion",
             event_label: "Freelance Rate Calculator"
         });
@@ -508,8 +519,12 @@ function trackCalculatorStarted() {
       calculator_name: "Freelance Rate Calculator"
     });
   }
+  if (typeof fbq === "function") {
+    fbq("trackCustom", "calculator_started", {
+      calculator_name: "Freelance Rate Calculator"
+    });
+  }
 }
-
 document.querySelectorAll("#income, #expenses, #hours, #weeks, #tax")
   .forEach(el => el.addEventListener("input", trackCalculatorStarted, { once: true }));
 
@@ -522,16 +537,27 @@ if (toolkitEl && "IntersectionObserver" in window) {
         gtag("event", "toolkit_cta_viewed", {
           calculator_name: "Freelance Rate Calculator"
         });
+        if (typeof fbq === "function") {
+          fbq("trackCustom", "toolkit_cta_viewed", {
+            calculator_name: "Freelance Rate Calculator"
+          });
+        }
         toolkitObserver.disconnect();
       }
     });
-  }, { threshold: 0.1 }); // or even 0, "any part visible"
-  toolkitObserver.observe(toolkitEl);
+    }, { threshold: 0.1 }); // or even 0, "any part visible"
+    toolkitObserver.observe(toolkitEl);
 }
 // Track clicks on the cross-link to the Nurse Pay Calculator
 document.querySelector(".calc-crosslink a")?.addEventListener("click", function () {
   if (typeof gtag === "function") {
     gtag("event", "crosslink_clicked", {
+      from_calculator: "Freelance Rate Calculator",
+      to_page: "nurse-rate-calculator.html"
+    });
+  }
+  if (typeof fbq === "function") {
+    fbq("trackCustom", "crosslink_clicked", {
       from_calculator: "Freelance Rate Calculator",
       to_page: "nurse-rate-calculator.html"
     });

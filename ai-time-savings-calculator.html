@@ -315,18 +315,27 @@ That's the equivalent of gaining more time without adding extra working hours.
 document.getElementById("result").scrollIntoView({ behavior: "smooth", block: "start" });
 
 }
-
-
 function trackCalculator(){
 
     gtag('event', 'calculator_completed', {
         calculator_name: 'AI Time Savings Calculator'
     });
+    if (typeof fbq === "function") {
+        fbq('trackCustom', 'calculator_completed', {
+            calculator_name: 'AI Time Savings Calculator'
+        });
+    }
 
 }
 function trackToolkitClick() {
     if (typeof gtag === "function") {
         gtag("event", "free_toolkit_clicked", {
+            event_category: "conversion",
+            event_label: "AI Time Savings Calculator"
+        });
+    }
+    if (typeof fbq === "function") {
+        fbq("trackCustom", "free_toolkit_clicked", {
             event_category: "conversion",
             event_label: "AI Time Savings Calculator"
         });
@@ -406,6 +415,11 @@ function trackCalculatorStarted() {
       calculator_name: "AI Time Savings Calculator"
     });
   }
+  if (typeof fbq === "function") {
+    fbq("trackCustom", "calculator_started", {
+      calculator_name: "AI Time Savings Calculator"
+    });
+  }
 }
 document.querySelectorAll("#rate, #hours, #saving, #weeks")
   .forEach(el => el.addEventListener("input", trackCalculatorStarted, { once: true }));
@@ -413,17 +427,22 @@ document.querySelectorAll("#rate, #hours, #saving, #weeks")
 // Track when the CTA box scrolls into view
 const toolkitEl = document.querySelector(".cta-box");
 if (toolkitEl && "IntersectionObserver" in window) {
-  const toolkitObserver = new IntersectionObserver((entries) => {
+const toolkitObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting && typeof gtag === "function") {
         gtag("event", "toolkit_cta_viewed", {
           calculator_name: "AI Time Savings Calculator"
         });
+        if (typeof fbq === "function") {
+          fbq("trackCustom", "toolkit_cta_viewed", {
+            calculator_name: "AI Time Savings Calculator"
+          });
+        }
         toolkitObserver.disconnect();
       }
     });
   }, { threshold: 0.1 });
-  toolkitObserver.observe(toolkitEl);
+    toolkitObserver.observe(toolkitEl);
 }
 
 // Wire up the existing (currently unused) trackToolkitClick function

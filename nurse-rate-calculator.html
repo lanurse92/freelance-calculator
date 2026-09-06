@@ -313,11 +313,21 @@ function trackNurseCalculator() {
             calculator_name: "Nurse Pay Calculator"
         });
     }
+    if (typeof fbq === "function") {
+        fbq("trackCustom", "calculator_completed", {
+            calculator_name: "Nurse Pay Calculator"
+        });
+    }
 }
-
 function trackToolkitClick() {
     if (typeof gtag === "function") {
         gtag("event", "free_toolkit_clicked", {
+            event_category: "conversion",
+            event_label: "Nurse Pay Calculator"
+        });
+    }
+    if (typeof fbq === "function") {
+        fbq("trackCustom", "free_toolkit_clicked", {
             event_category: "conversion",
             event_label: "Nurse Pay Calculator"
         });
@@ -357,6 +367,11 @@ function trackCalculatorStarted() {
       calculator_name: "Nurse Pay Calculator"
     });
   }
+  if (typeof fbq === "function") {
+    fbq("trackCustom", "calculator_started", {
+      calculator_name: "Nurse Pay Calculator"
+    });
+  }
 }
 
 document.querySelectorAll("#employmentType, #specialty, #shiftType, #weekendShifts, #experience")
@@ -370,24 +385,31 @@ document.querySelector(".calc-crosslink a")?.addEventListener("click", function 
       to_page: "freelance-rate-calculator.html"
     });
   }
+  if (typeof fbq === "function") {
+    fbq("trackCustom", "crosslink_clicked", {
+      from_calculator: "Nurse Pay Calculator",
+      to_page: "freelance-rate-calculator.html"
+    });
+  }
 });
 
 // 3. Track when the newsletter/toolkit CTA block actually scrolls into view
 // (tells you if people who complete the calculator ever see the offer)
-const toolkitEl = document.querySelector(".toolkit-cta");
-if (toolkitEl && "IntersectionObserver" in window) {
-  const toolkitObserver = new IntersectionObserver((entries) => {
+const toolkitObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting && typeof gtag === "function") {
         gtag("event", "toolkit_cta_viewed", {
           calculator_name: "Nurse Pay Calculator"
         });
+        if (typeof fbq === "function") {
+          fbq("trackCustom", "toolkit_cta_viewed", {
+            calculator_name: "Nurse Pay Calculator"
+          });
+        }
         toolkitObserver.disconnect();
       }
     });
   }, { threshold: 0.1 }); // or even 0, "any part visible"
-  toolkitObserver.observe(toolkitEl);
-}
 document.querySelector(".toolkit-cta")?.addEventListener("click", function () {
   trackToolkitClick();
 }, { once: true });

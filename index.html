@@ -408,8 +408,13 @@ function trackToolLaunch(toolName) {
             tool_name: toolName
         });
     }
+    if (typeof fbq === "function") {
+        fbq("trackCustom", "tool_launched", {
+            event_category: "tools",
+            tool_name: toolName
+        });
+    }
 }
-
 lucide.createIcons();
 </script>
 <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
