@@ -212,12 +212,11 @@ Calculate My AI Savings
 </div>
     <div class="cta-box">
 
-    <h3>Get More AI Productivity Tools</h3>
+    <h3>You Could Save <span id="ctaTimeHighlight">Hours</span> Every Week — Here's How to Put That Time to Work</h3>
 
     <p>
-        Join The AI Edge newsletter and get the free AI Productivity Toolkit —
-        plus more calculators, practical AI tools, and strategies to help you
-        save time, work smarter, and grow your business.
+        Get the free AI Productivity Toolkit — practical AI tools and
+        strategies to help you save even more time and grow your business.
     </p>
 
     <div id="beehiiv-form">
@@ -312,6 +311,7 @@ That's the equivalent of gaining more time without adding extra working hours.
     </button>
 </div>
 `;
+document.getElementById("ctaTimeHighlight").textContent = savedHoursWeekly.toFixed(1) + " Hours";
 document.getElementById("result").scrollIntoView({ behavior: "smooth", block: "start" });
 
 }

@@ -166,19 +166,19 @@ $0&ndash;$0/hr
 </strong>
 </div>
 <div class="toolkit-cta" style="margin-top: 30px;">
-    <h3>Get More Tools Like This</h3>
+    <h3>You Could Be Earning Up To <span id="ctaRateHighlight">More</span> — Here's How Nurses Are Adding $500-2,000/Month with AI</h3>
 
     <p style="margin-bottom: 20px;">
-    Want help negotiating this range with a manager or recruiter? Join The AI
-    Edge newsletter and get the free AI Productivity Toolkit — plus more
-    calculators and tools built for nurses.
+    Get the free Nurse Side Hustle Starter Kit — 5 AI-powered ways nurses are
+    boosting their income outside the bedside, plus 2 ready-to-use prompts to
+    try today.
 </p>
 
     <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js"
         data-beehiiv-form="bd93e433-dab6-4eb0-808a-efa3aaccf06a"></script>
 
     <span class="newsletter-note" style="display:block; margin-top:10px;">
-        No spam. Just useful AI insights.
+        You'll also get occasional nurse income tips — unsubscribe anytime.
     </span>
 </div>
 <div class="result-grid">
@@ -303,6 +303,7 @@ localStorage.setItem("lastCalculated", new Date().toLocaleDateString());
 document.getElementById("calculatorMessage").textContent =
 "Based on what you entered, expect roughly $" + low.toFixed(0) + "–$" + high.toFixed(0) +
 "/hr. This is an estimate — confirm against local postings or a recruiter.";
+document.getElementById("ctaRateHighlight").textContent = "$" + high.toFixed(0) + "/hr";
 trackNurseCalculator();
 
 document.getElementById("results").scrollIntoView({ behavior: "smooth", block: "start" });
